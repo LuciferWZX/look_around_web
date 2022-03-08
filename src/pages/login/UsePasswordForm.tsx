@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { Button, Checkbox, Col, Form, FormInstance, Input, message, Row } from "antd";
+import { Button, Checkbox, Form, Input, message } from "antd";
 import { StyledForm } from "@/pages/login/style";
 import { IconFont } from "@/components";
 import { useRequest } from "ahooks";
@@ -25,8 +25,8 @@ const UsePasswordForm:FC<IProps>=()=>{
   const {run:login,loading:loginLoading}=useRequest(passwordLogin,{
     manual:true,
     onSuccess:async (result:ResResult<IUser>)=>{
-      if(result.code === ResCode.SUCCESS){
-        setAll({
+      if(result.code === ResCode.SUCCESS){//登陆成功
+        setAll({//设置数据到localstorage
           [StoreKey.ID]:result.data.id,
           [StoreKey.TOKEN]:result.data.token
         })
@@ -34,7 +34,6 @@ const UsePasswordForm:FC<IProps>=()=>{
         await refresh()
 
       }
-      console.log(777,result);
     },
     debounceWait:300
   })

@@ -1,5 +1,6 @@
 import {FC} from "react";
 import {useMount} from "ahooks";
+import BaseHeader from "@/layouts/baseLayout/Header";
 
 const BaseLayout:FC=({children})=>{
   useMount(()=>{
@@ -7,7 +8,7 @@ const BaseLayout:FC=({children})=>{
   })
   return(
     <div>
-      BaseLayout
+      <BaseHeader />
       {children}
     </div>
   )
