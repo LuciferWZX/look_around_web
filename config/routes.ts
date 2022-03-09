@@ -11,8 +11,10 @@ const routes:IRoute[] = [
         component:'@/layouts/baseLayout',
         wrappers:[ '@/wrappers/auth'],
         routes:[
-          {path:'/base',redirect:'/base/home'},
-          {path:'/base/home',component:'@/pages/home'},
+          {path:'/base',redirect:'/base/all-fields'},
+          {path:'/base/all-fields',component:'@/pages/allFields'},
+          {path:'/base/friends-fields',component:'@/pages/friendsFields'},
+          {path:'/base/around-people',component:'@/pages/aroundPeople'},
           { component: '@/pages/404' },
         ]
       },

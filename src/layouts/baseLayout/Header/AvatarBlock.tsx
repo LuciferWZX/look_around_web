@@ -1,6 +1,6 @@
 import React, { FC, memo } from "react";
 import { useModel } from "@@/plugin-model/useModel";
-import { Avatar, Dropdown, Menu, message, Modal } from "antd";
+import { Avatar, Dropdown, Menu, message, Modal, Space } from "antd";
 import { StyledAvatarBlock } from "@/layouts/baseLayout/Header/style";
 import { IconFont } from "@/components";
 import styled from "styled-components";
@@ -11,10 +11,7 @@ const StyledMenu = styled(Menu)`
   .user-info{
     max-width:150px;
     font-size: 12px;
-    .nickname{
-      font-weight: bold;
-      color: #1890ff;
-    }
+
     .username{
       color:orange;
     }
@@ -72,7 +69,6 @@ const AvatarBlock:FC = () => {
     return (
       <StyledMenu onClick={clickMenu}>
         <Menu.Item className={'user-info'} key={'user-info'}>
-          <div className={'nickname'}>{user?.nickname}</div>
           <div className={'username'}>{user?.username}</div>
         </Menu.Item>
         <Menu.Item className={'menu-item center-text'} key={"setting"} icon={<IconFont type={'icon-setting'}/>}>
@@ -91,7 +87,10 @@ const AvatarBlock:FC = () => {
   return(
     <StyledAvatarBlock>
       <Dropdown trigger={['click']} overlay={renderDropdown()}>
-        <Avatar className={'user-avatar'} src={user?.avatar} icon={<IconFont type={'icon-21'}/>} />
+        <Space>
+          <Avatar className={'user-avatar'} src={user?.avatar} icon={<IconFont type={'icon-21'}/>} />
+          <span className={'nickname'}>{user?.nickname}</span>
+        </Space>
       </Dropdown>
     </StyledAvatarBlock>
   )
