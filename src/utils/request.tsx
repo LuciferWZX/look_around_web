@@ -1,7 +1,8 @@
 import { extend, ResponseError } from "umi-request";
-import { message } from "antd";
+import { message, notification } from "antd";
 import { get, removeUserInfo } from "@/utils/store";
 import { StoreKey } from "@/types/store.enum";
+import { IconFont } from "@/components";
 const errorHandler=(error:ResponseError)=> {
   const {response,data}=error
   if(data){
@@ -18,8 +19,22 @@ const errorHandler=(error:ResponseError)=> {
         message.error({content:data.msg,key:response.status})
         break
       }
-      default:{
+      case 504:{
+        if(!response.ok){
+          return notification.open({
+            message: '服务器未响应',
+            description: '请检查您的网络是否连接，如已连接请稍后重试',
+            key:'504',
+            icon: <IconFont type={"icon-error"} style={{ color: '#e74c3c' }} />,
+            closeIcon: <IconFont type={"icon-close"} />
+        });
+        }
+        console.log(1111,response,data);
         message.error({content:data.msg,key:response.status})
+        break
+      }
+      default:{
+
         console.log(`error--->${response.status}`);
       }
     }

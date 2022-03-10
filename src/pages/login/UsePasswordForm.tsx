@@ -24,8 +24,8 @@ const UsePasswordForm:FC<IProps>=()=>{
   const [form] = Form.useForm<Values>()
   const {run:login,loading:loginLoading}=useRequest(passwordLogin,{
     manual:true,
-    onSuccess:async (result:ResResult<IUser>)=>{
-      if(result.code === ResCode.SUCCESS){//登陆成功
+    onSuccess:async (result?:ResResult<IUser>)=>{
+      if(result?.code === ResCode.SUCCESS){//登陆成功
         setAll({//设置数据到localstorage
           [StoreKey.ID]:result.data.id,
           [StoreKey.TOKEN]:result.data.token

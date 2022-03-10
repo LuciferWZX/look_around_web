@@ -5,17 +5,19 @@ import { queryUserInfo } from "@/services/user";
 import { ResCode, ResResult } from "@/types/response.interface";
 
 export async function getInitialState():Promise<IUser | null>{
-  console.log("%c初始化数据:start",'color:#7bed9f')
-  console.log("%c初始化数据:done",'color:#7bed9f')
+  console.log("%c[初始化数据:开始]",'color:#7bed9f;font-weight:bold;')
+
   const id = get(StoreKey.ID)
   const token = get(StoreKey.TOKEN)
   if(id && token){
-    const result:ResResult<IUser> =await queryUserInfo(id)
-    console.log('查询到用户:', result );
-    if(result.code === ResCode.SUCCESS){
+    const result:ResResult<IUser>|undefined =await queryUserInfo(id)
+    if(result?.code === ResCode.SUCCESS){
+      console.log("%c[查询到用户]",'color:#7bed9f;font-weight:bold;')
+      console.log("%c[初始化数据:结束]",'color:#7bed9f;font-weight:bold;')
       return result.data
     }
   }
-  console.log('%c未查询到用户','color:red;' );
+  console.log('%c[未查询到用户]','color:red;font-weight:bold;' );
+  console.log("%c[初始化数据:结束]",'color:#7bed9f;font-weight:bold;')
   return null
 }

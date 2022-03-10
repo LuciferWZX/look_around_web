@@ -1,8 +1,20 @@
 import {FC} from "react";
+import { StyledAllFields } from "@/pages/allFields/style";
+import { FieldCard } from "@/components";
+
 
 const AllFields:FC=()=>{
   return(
-    <div style={{height:1800,padding:10}}>AllFields</div>
+    <StyledAllFields>
+      AllFields
+      <FieldCard />
+      <FieldCard />
+      <FieldCard />
+      <FieldCard />
+      <FieldCard />
+      <FieldCard />
+      <FieldCard />
+    </StyledAllFields>
   )
 }
 export default AllFields
